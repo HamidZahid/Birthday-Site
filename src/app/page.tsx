@@ -28,23 +28,23 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('/birthday-bg.jpg')] bg-cover bg-center relative">
+    <div className="min-h-screen flex items-center justify-center bg-[url('/birthday-bg.jpg')] bg-cover bg-center relative overflow-hidden">
       <div className="absolute inset-0 bg-black/30" />
-      <div className="text-center relative w-full max-w-4xl mx-auto px-4 z-10">
+      <div className="text-center relative w-full max-w-4xl mx-auto px-4 z-10 py-20">
         <AnimatePresence mode="wait">
           {stage === 1 && (
             <motion.div 
               key="first"
-              className="relative inline-block"
+              className="relative"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 1.5 }}
             >
-              <div className="relative">
+              <div className="relative mx-auto max-w-2xl">
                 {/* Floating emojis background */}
                 <motion.div 
-                  className="absolute -inset-20 z-0"
+                  className="absolute -inset-10 z-0 overflow-hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
@@ -149,16 +149,16 @@ export default function Home() {
           {stage === 2 && (
             <motion.div
               key="second"
-              className="relative inline-block"
+              className="relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <div className="relative">
+              <div className="relative mx-auto max-w-2xl">
                 {/* Floating emojis background */}
                 <motion.div 
-                  className="absolute -inset-20 z-0"
+                  className="absolute -inset-10 z-0 overflow-hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
@@ -255,16 +255,16 @@ export default function Home() {
           {stage === 3 && (
             <motion.div
               key="third"
-              className="relative inline-block"
+              className="relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <div className="relative">
+              <div className="relative mx-auto max-w-2xl">
                 {/* Floating emojis background */}
                 <motion.div 
-                  className="absolute -inset-20 z-0"
+                  className="absolute -inset-10 z-0 overflow-hidden"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
@@ -392,15 +392,15 @@ export default function Home() {
           {stage === 4 && (
             <motion.div
               key="fourth"
-              className="relative inline-block"
+              className="relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <div className="relative">
+              <div className="relative mx-auto max-w-2xl overflow-hidden">
                 {/* Floating emojis background */}
                 <motion.div 
-                  className="absolute -inset-20 z-0"
+                  className="absolute -inset-10 z-0 overflow-hidden pointer-events-none"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
@@ -408,15 +408,15 @@ export default function Home() {
                   {['🎂', '🎈', '🎊', '✨', '💝'].map((emoji, index) => (
                     <motion.span
                       key={index}
-                      className="absolute text-4xl"
+                      className="absolute text-3xl"
                       style={{
                         top: `${Math.random() * 100}%`,
                         left: `${Math.random() * 100}%`,
                       }}
                       animate={{
-                        y: [0, -20, 0],
-                        x: [0, 10, -10, 0],
-                        rotate: [0, 10, -10, 0],
+                        y: [0, -15, 0],
+                        x: [0, 8, -8, 0],
+                        rotate: [0, 8, -8, 0],
                       }}
                       transition={{
                         duration: 4,
@@ -430,11 +430,11 @@ export default function Home() {
                 </motion.div>
 
                 <motion.div 
-                  className="text-7xl mb-8 relative z-10"
+                  className="text-6xl mb-6 relative z-10"
                   animate={{ 
-                    y: [0, -20, 0],
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.2, 1]
+                    y: [0, -15, 0],
+                    rotate: [0, 8, -8, 0],
+                    scale: [1, 1.1, 1]
                   }}
                   transition={{ 
                     duration: 4,
@@ -446,15 +446,15 @@ export default function Home() {
                 </motion.div>
 
                 <motion.h1
-                  className="text-5xl md:text-7xl font-bold text-pink-600 dark:text-pink-300 mb-8 relative z-10"
+                  className="text-4xl md:text-6xl font-bold text-pink-600 dark:text-pink-300 mb-8 relative z-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.5 }}
                 >
                   <motion.span
                     animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [-2, 2, -2, 2, 0]
+                      scale: [1, 1.05, 1],
+                      rotate: [-1, 1, -1, 1, 0]
                     }}
                     transition={{ 
                       duration: 2,
@@ -467,7 +467,7 @@ export default function Home() {
                 </motion.h1>
 
                 <motion.div
-                  className="space-y-4 relative z-10"
+                  className="space-y-3 relative z-10"
                   initial="hidden"
                   animate="visible"
                   variants={{
@@ -487,7 +487,7 @@ export default function Home() {
                   ].map((quote, index) => (
                     <motion.p
                       key={index}
-                      className="text-2xl md:text-3xl text-purple-600 dark:text-purple-300"
+                      className="text-xl md:text-2xl text-purple-600 dark:text-purple-300"
                       variants={{
                         hidden: { opacity: 0, x: -50 },
                         visible: { opacity: 1, x: 0 }
