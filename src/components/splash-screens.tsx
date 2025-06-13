@@ -72,11 +72,9 @@ export function SplashScreens() {
           numberOfPieces={150}
           gravity={0.25}
           wind={0}
-          drift={0}
           friction={0.99}
           initialVelocityY={10}
           recycle={true}
-          run={true}
           style={{
             position: 'fixed',
             top: 0,

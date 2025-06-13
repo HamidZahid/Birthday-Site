@@ -6,7 +6,17 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { CountdownTimer } from '@/components/countdown-timer'
 import { MusicPlayer } from '@/components/music-player'
 import { FloatingBalloons } from '@/components/floating-balloons'
-import Confetti from 'react-confetti'
+import dynamic from 'next/dynamic'
+
+// Create a client-side only wrapper for Confetti
+const ClientConfetti = dynamic(() => import('react-confetti'), {
+  ssr: false,
+})
+
+// Create a client-side only wrapper for the entire page
+const BirthdayPageContent = dynamic(() => Promise.resolve(BirthdayPageComponent), {
+  ssr: false,
+})
 
 // Photo gallery images
 const photos = [
@@ -32,11 +42,26 @@ const birthdaySong = '/music/birthday.mp3'
 // Replace with actual birthday date
 const birthdayDate = new Date('2024-12-31')
 
-export default function BirthdayPage() {
+function BirthdayPageComponent() {
   const [isCountdownComplete, setIsCountdownComplete] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
   const [activeSection, setActiveSection] = useState(0)
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+
+  // Initialize window dimensions
+  useEffect(() => {
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+    
+    updateDimensions()
+    window.addEventListener('resize', updateDimensions)
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [])
 
   const handleCountdownComplete = () => {
     setIsCountdownComplete(true)
@@ -89,9 +114,9 @@ export default function BirthdayPage() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 pointer-events-none"
           >
-            <Confetti
-              width={window.innerWidth}
-              height={window.innerHeight}
+            <ClientConfetti
+              width={dimensions.width}
+              height={dimensions.height}
               recycle={false}
               numberOfPieces={500}
               gravity={0.2}
@@ -310,4 +335,9 @@ export default function BirthdayPage() {
       </footer>
     </main>
   )
+}
+
+// Export a simple wrapper component that uses the client-side only version
+export default function BirthdayPage() {
+  return <BirthdayPageContent />
 } 
