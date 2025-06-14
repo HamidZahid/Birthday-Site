@@ -16,27 +16,28 @@ export function SplashScreens() {
     {
       title: "It's Your Birthday YeYe! 🎉",
       description: "Get ready for something amazing!",
-      background: "bg-gradient-to-r from-pink-500 to-purple-500",
-      confettiColors: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493', '#ffffff']
+      background: "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-400 via-purple-400 to-indigo-400",
+      confettiColors: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493', '#ffffff'],
+      emoji: "🎂"
     },
     {
       title: "Made Something Special 🎁",
       description: "Because you're special to me!",
-      background: "bg-gradient-to-r from-blue-500 to-teal-500",
-      confettiColors: ['#00CED1', '#48D1CC', '#40E0D0', '#20B2AA', '#ffffff']
+      background: "bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-400 via-teal-400 to-emerald-400",
+      confettiColors: ['#00CED1', '#48D1CC', '#40E0D0', '#20B2AA', '#ffffff'],
+      emoji: "🎁"
     },
     {
       title: "Ready to See? 🎨",
       description: "Do you want to see what I made?",
-      background: "bg-gradient-to-r from-primary-500 to-purple-600",
+      background: "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-400 via-purple-400 to-pink-400",
       showButtons: true,
-      confettiColors: ['#FFD700', '#FFA500', '#FF8C00', '#FF4500', '#ffffff']
+      confettiColors: ['#FFD700', '#FFA500', '#FF8C00', '#FF4500', '#ffffff'],
+      emoji: "✨"
     }
   ]
 
   useEffect(() => {
-    // Automatically advance to next screen after 4 seconds
-    // Only advance if not on the last screen
     if (currentScreen < screens.length - 1) {
       const timer = setTimeout(() => {
         setCurrentScreen(prev => prev + 1)
@@ -62,9 +63,28 @@ export function SplashScreens() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className={`min-h-screen flex items-center justify-center ${screens[currentScreen].background} overflow-hidden`}
+        className={`min-h-screen flex items-center justify-center ${screens[currentScreen].background} relative overflow-hidden`}
       >
-        {/* Full-screen confetti with consistent downward motion */}
+        {/* Animated background patterns */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute inset-0 opacity-20"
+            animate={{
+              backgroundPosition: ['0% 0%', '100% 100%'],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+            style={{
+              backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"/%3E%3C/svg%3E")',
+              backgroundSize: '24px 24px'
+            }}
+          />
+        </div>
+
         <ReactConfetti
           width={width}
           height={height}
@@ -89,15 +109,54 @@ export function SplashScreens() {
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="mb-8"
+            transition={{ 
+              duration: 1,
+              type: "spring",
+              stiffness: 200,
+              damping: 20
+            }}
+            className="mb-12 relative"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {screens[currentScreen].title}
-            </h1>
-            <p className="text-lg md:text-xl">
+            {/* Large emoji with glow effect */}
+            <motion.div
+              className="text-7xl md:text-8xl mb-8 relative"
+              animate={{
+                scale: [1, 1.1, 1],
+                rotate: [-5, 5, -5]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            >
+              <div className="absolute inset-0 blur-xl opacity-50">{screens[currentScreen].emoji}</div>
+              <div className="relative">{screens[currentScreen].emoji}</div>
+            </motion.div>
+
+            <motion.h1 
+              className="text-4xl md:text-6xl font-bold mb-6 relative"
+              animate={{
+                y: [0, -5, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            >
+              <div className="absolute inset-0 blur-lg opacity-50 text-white">{screens[currentScreen].title}</div>
+              <div className="relative">{screens[currentScreen].title}</div>
+            </motion.h1>
+
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
               {screens[currentScreen].description}
-            </p>
+            </motion.p>
           </motion.div>
 
           {screens[currentScreen].showButtons && (
@@ -105,13 +164,13 @@ export function SplashScreens() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="flex justify-center items-center gap-6"
+              className="flex flex-col md:flex-row justify-center items-center gap-6"
             >
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleYesClick}
-                className="px-6 py-3 bg-white text-primary-500 rounded-full text-lg font-bold hover:bg-opacity-90 transition-all"
+                className="px-8 py-4 bg-white text-primary-500 rounded-full text-xl font-bold hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Yes! Show me 🎉
               </motion.button>
@@ -121,9 +180,9 @@ export function SplashScreens() {
                   x: noButtonPosition.x,
                   y: noButtonPosition.y,
                 }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 onHoverStart={moveNoButton}
-                className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full text-lg font-bold hover:bg-white/30 transition-all"
+                className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-full text-xl font-bold hover:bg-white/30 transition-all shadow-lg"
               >
                 No, thanks
               </motion.button>
@@ -132,28 +191,35 @@ export function SplashScreens() {
 
           {/* Progress indicator */}
           <motion.div 
-            className="absolute bottom-8 left-0 right-0 flex justify-center gap-2"
+            className="absolute bottom-12 left-0 right-0 flex justify-center gap-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
             {screens.map((_, index) => (
-              <div
+              <motion.div
                 key={index}
-                className={`w-2 h-2 rounded-full ${
-                  index === currentScreen ? 'bg-white' : 'bg-white/30'
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === currentScreen ? 'w-8 bg-white' : 'w-3 bg-white/30'
                 }`}
+                whileHover={{ scale: 1.2 }}
               />
             ))}
           </motion.div>
 
-          {/* Loading bar for current screen */}
+          {/* Loading bar */}
           {currentScreen < screens.length - 1 && (
             <motion.div
               className="absolute bottom-0 left-0 h-1 bg-white/30"
-              initial={{ width: '0%' }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 4, ease: 'linear' }}
+              initial={{ width: '0%', opacity: 0.5 }}
+              animate={{ 
+                width: '100%',
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{ 
+                width: { duration: 4, ease: 'linear' },
+                opacity: { duration: 2, repeat: Infinity }
+              }}
             />
           )}
         </div>
