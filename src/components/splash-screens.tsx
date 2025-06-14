@@ -21,7 +21,7 @@ export function SplashScreens() {
       emoji: "🎂"
     },
     {
-      title: "Made Something Special 🎁",
+      title: "Made something special for Madam Jee 🎀🩵🎁",
       description: "Because you're special to me!",
       background: "bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-400 via-teal-400 to-emerald-400",
       confettiColors: ['#00CED1', '#48D1CC', '#40E0D0', '#20B2AA', '#ffffff'],
