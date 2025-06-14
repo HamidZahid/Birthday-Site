@@ -607,7 +607,7 @@ function BirthdayPageComponent() {
                   <p className="text-gray-700 dark:text-gray-300 mb-4 md:mb-6 text-base md:text-lg leading-relaxed whitespace-pre-line text-center">
                     {[{
                       message: "Happiest Birthday to my most favorite person 🎀❤\nYou came into my life unexpectedly and became the closest soul to me 🤍🥺\nThank you for always understanding, supporting, and valuing me 🤗\nI'll always cherish the moments, memories, and your daily stories 🥺(apko pata aj kia hua 😩)\nYour presence gave me peace, strength, and countless smiles 🌸😇\nMay Allah bless you with endless happiness, success & His protection 🌙✨\nMay you continue to shine with grace, faith, and dignity 🧕🌷\nStay safe, stay blessed and always keep smiling 😊❤",
-                      author: "Your Special Someone",
+                      author: "[ احمر ]",
                       emoji: "🎀"
                     }][0].message}
                   </p>
@@ -622,7 +622,7 @@ function BirthdayPageComponent() {
                       repeatType: "reverse"
                     }}
                   >
-                    - Your Special Someone
+                    - [ احمر ]
                   </motion.p>
                 </div>
               </motion.div>
